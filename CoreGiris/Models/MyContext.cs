@@ -10,7 +10,7 @@ namespace CoreGiris.Models
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=UrunYonetimiDb;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=UrunYonetimiDb;Trusted_Connection=True;"); //  WebConfig veya AppConfig classımız olmadıgı için connectionstringimizi buraya yazıyoruz.
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -19,7 +19,7 @@ namespace CoreGiris.Models
 
             modelBuilder.Entity<Product>()
                 .Property(x => x.UnitPrice)
-                .HasColumnType("decimal(7,2)");
+                .HasColumnType("decimal(7,2)"); // Fiyat sütununa girilecek verilerin uzunluğunu burada belirledik. Toplamda uzunluk 7 olmalı ama 2 basamagı virgulden sonraki rakamlardan oluşuyor.
         }
 
         public virtual DbSet<Category> Categories { get; set; }

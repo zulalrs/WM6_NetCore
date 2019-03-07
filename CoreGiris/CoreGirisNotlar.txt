@@ -1,0 +1,28 @@
+﻿1) cmd ye dotnet yazıp bilgisayarımızda kurulumu diye kontrol edebiliriz.
+2) cmd den bir dotnet core uygulaması oluşturabiliriz. Bunun için cmd deki adımlar:
+-dir
+-cd Desktop
+-md core
+-cd core
+-dotnet new webapp -o projeismi
+-dotnet run (Çalıştırmak için)
+-localhost:5000 üzerinden çalıştırıyor
+-ctrl + c ile de projeyi durduruyoruz.
+
+-----------------------------------------------------
+
+İlk Proje Oluşturma
+1) ASP.Net Core Web application+ Web Application(Model-View-Controller) + Configure for https(seçili durumu kaldırdık)
+2) Proje içerisindeki startup classı bütün konfigürasyon işlemlerini yaptığımız yer.
+**Bundle işlemlerini burada da yapabiliyoruz.
+3) Model klasoru içerisine Kisi classı ekledik ve propertylerini yazdık.
+4) HomeController içerisinde Kisi tipinde nesneler alan bir liste tanımladık ve içine kisi ekledik. About actionresultından da bu listeyi about view ına gonderdik.
+
+**ViewData ile nesne gonderebiliyoruz.
+
+5) Projemize manage nuget packagesten Microsoft.EntityFraworkCore u kuruyoruz.
+6) Models klasoru içerisine Mycontext sınıfını oluşturduk.
+7) Models klasoru içerisine Category ve model classlarımızı oluşturduk, propertylerini yazdık. Navigation propertylerini ayarladık.(Yani poco classlarımız)
+8) MyContext classı içerisine poco classlarımızı ekledık.
+9) Database imizi oluşturacağz. Enable migartions ı core da yazmıyoruz. Sadece add-migration ve update-database işlemini yapıyoruz.
+22.dk

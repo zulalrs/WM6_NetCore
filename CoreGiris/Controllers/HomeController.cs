@@ -32,7 +32,7 @@ namespace CoreGiris.Controllers
         {
             ViewData["Message"] = "Your application description page.";
             ViewBag.Hello = "Hello World";
-            return View(kisiler);
+            return View(kisiler);   // Yukarıda oluşturduğumuz kişi tipindeki listeyi View e gonderdik.
         }
 
         public IActionResult Contact()
