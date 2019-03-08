@@ -14,13 +14,30 @@ namespace IdentityCore.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ApplicationDbContext _dbContext;
+        private readonly RoleManager<ApplicationRole> _roleManager;
 
         //Dependency Injection
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ApplicationDbContext dbContext)
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ApplicationDbContext dbContext, RoleManager<ApplicationRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _dbContext = dbContext;
+            _roleManager = roleManager;
+
+            var roleNames = Enum.GetNames(typeof(IdentityRoles));
+            foreach (var roleName in roleNames)
+            {
+                if (!_roleManager.RoleExistsAsync(roleName).Result)
+                {
+                    var role = new ApplicationRole()
+                    {
+                        Name=roleName,
+                        Description=""
+                    };
+                    var task = _roleManager.CreateAsync(role).Result;
+                    Task.Run(()=> task);
+                }
+            }
         }
 
         [HttpGet]
@@ -90,5 +107,10 @@ namespace IdentityCore.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
+    }
+    public enum IdentityRoles
+    {
+        Admin,
+        User
     }
 }

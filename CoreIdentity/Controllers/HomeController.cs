@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CoreIdentity.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CoreIdentity.Controllers
 {
@@ -21,7 +22,7 @@ namespace CoreIdentity.Controllers
 
             return View();
         }
-
+       
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
