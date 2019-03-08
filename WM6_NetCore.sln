@@ -5,7 +5,11 @@ VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ders1", "Ders1", "{E4733261-5B18-4734-87FD-B8D5D6F05103}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreGiris", "CoreGiris\CoreGiris.csproj", "{5B5AD9F8-3BD4-4468-BC80-4D7F692F4973}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreGiris", "CoreGiris\CoreGiris.csproj", "{5B5AD9F8-3BD4-4468-BC80-4D7F692F4973}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ders2", "Ders2", "{5319F9BC-8D1F-43F2-BDDE-D7B053E0CDCD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreIdentity", "CoreIdentity\CoreIdentity.csproj", "{48CD8E77-7361-486C-A22D-8180504F0E44}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,12 +21,17 @@ Global
 		{5B5AD9F8-3BD4-4468-BC80-4D7F692F4973}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B5AD9F8-3BD4-4468-BC80-4D7F692F4973}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B5AD9F8-3BD4-4468-BC80-4D7F692F4973}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48CD8E77-7361-486C-A22D-8180504F0E44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48CD8E77-7361-486C-A22D-8180504F0E44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48CD8E77-7361-486C-A22D-8180504F0E44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48CD8E77-7361-486C-A22D-8180504F0E44}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{5B5AD9F8-3BD4-4468-BC80-4D7F692F4973} = {E4733261-5B18-4734-87FD-B8D5D6F05103}
+		{48CD8E77-7361-486C-A22D-8180504F0E44} = {5319F9BC-8D1F-43F2-BDDE-D7B053E0CDCD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FAAE1484-143F-45BA-95F1-B22C777D9E1D}
