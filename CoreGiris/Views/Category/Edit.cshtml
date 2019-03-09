@@ -1,13 +1,14 @@
 ﻿@model Category
+@*Category tipinde bir nesne gelecek.*@
 @{
     ViewData["Title"] = "Edit";
 }
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <form asp-action="Edit" asp-controller="Category" method="post">
-                <div asp-validation-summary="All" class="text-danger"></div>
-                <input type="hidden" asp-for="Id" />
+            <form asp-action="Edit" asp-controller="Category" method="post">    @*CategoryControllerdaki Edit actionına post edilecek.*@
+                <div asp-validation-summary="All" class="text-danger"></div>    @*Validationdan gelecek hata mesajları.*@
+                <input type="hidden" asp-for="Id" />  @*Guncelleme işlemi için Id yi gondermeliyiz. Bu Id ekranda gözükmeyecek.*@
                 <div class="form-group">
                     <label asp-for="CategoryName" class="col-sm-4 control-label"></label>
                     <div class="col-sm-8">

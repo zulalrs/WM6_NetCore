@@ -31,7 +31,7 @@ namespace CoreGiris
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<MyContext>();
+            services.AddDbContext<MyContext>(); // Dependency Injection kullandığımız için context sınıfımızı buraya servis olarak ekledik. Burada MyContext sınıfının bir tane instance sını sağlamış olduk.
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -48,8 +48,7 @@ namespace CoreGiris
             }
 
             app.UseStaticFiles();
-            app.UseCookiePolicy();
-
+       
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

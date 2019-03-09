@@ -1,15 +1,20 @@
-﻿@model List<Category>
+﻿@model List<Category> 
+@*Buraya kategori tipinde controller ın index metodundan bir liste gonderdik.*@
 @{
     ViewData["Title"] = "Kategori - Index";
     var message = TempData["Message"] as string;
 }
+
+@*Category adındaki controller da bulunan add actionını çağırıyoruz. Oradan da Add viewına gonderme işlemi olacak. Mvc de bu işlemi url action kullanarak yapıyorduk.*@
 <a asp-action="Add" asp-controller="Category" class="btn btn-success">Yeni Kategori Ekle</a>
-<h3>@message</h3>
+<h3>@message</h3> @*TempData mesajı*@
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <table class="table">
+                @*Bir table oluşturduk ve içerisini gelen listedeki kategorilerimizle doldurduk.*@
                 <thead>
+                    @*Başlık kısmı*@
                     <tr>
                         <th>#</th>
                         <th>Kategori Adı</th>
@@ -18,6 +23,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @*İçerik kısmı*@
                     @for (var i = 0; i < Model.Count; i++)
                     {
                         var item = Model[i];
@@ -26,9 +32,11 @@
                             <td>@item.CategoryName</td>
                             <td>@item.Products.Count</td>
                             <td>
+                                @*Category adındaki controller da bulunan edit actionını çağırıyoruz ve route olarak seçilen modelin id sini gonderiyoruz.*@
                                 <a asp-action="Edit" asp-controller="Category" asp-route-id="@item.Id" class="btn btn-info">
                                     Düzenle
                                 </a>
+                                @*Category adındaki controller da bulunan delete actionını çağırıyoruz ve route olarak seçilen modelin id sini gonderiyoruz.*@
                                 <a asp-action="Delete" asp-controller="Category" asp-route-id="@item.Id" class="btn btn-danger">
                                     Sil
                                 </a>

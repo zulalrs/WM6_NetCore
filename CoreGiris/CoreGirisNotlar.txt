@@ -14,7 +14,9 @@
 İlk Proje Oluşturma
 1) ASP.Net Core Web application+ Web Application(Model-View-Controller) + Configure for https(seçili durumu kaldırdık)
 2) Proje içerisindeki startup classı bütün konfigürasyon işlemlerini yaptığımız yer.
+
 **Bundle işlemlerini burada da yapabiliyoruz.
+
 3) Model klasoru içerisine Kisi classı ekledik ve propertylerini yazdık.
 4) HomeController içerisinde Kisi tipinde nesneler alan bir liste tanımladık ve içine kisi ekledik. About actionresultından da bu listeyi about view ına gonderdik.
 
@@ -22,7 +24,22 @@
 
 5) Projemize manage nuget packagesten Microsoft.EntityFraworkCore u kuruyoruz.
 6) Models klasoru içerisine Mycontext sınıfını oluşturduk.
-7) Models klasoru içerisine Category ve model classlarımızı oluşturduk, propertylerini yazdık. Navigation propertylerini ayarladık.(Yani poco classlarımız)
-8) MyContext classı içerisine poco classlarımızı ekledık.
-9) Database imizi oluşturacağz. Enable migartions ı core da yazmıyoruz. Sadece add-migration ve update-database işlemini yapıyoruz.
-22.dk
+7) Models klasoru içerisine Category ve Product classlarımızı oluşturduk, propertylerini yazdık. Navigation propertylerini ayarladık.(Yani poco classlarımız)
+8) MyContext classı içerisine poco classlarımızı ekledık ve connectionString i yazdık.
+9) Database imizi oluşturacağz. Enable migartions ı core da yazmıyoruz. Sadece add-migration ve update-database işlemlerini yapıyoruz.
+10) Controller klasoru içerisine empty seçerek bir CategoryController ekledik ve Index actionının içerisinde tüm kategoriyi çağırdık, view ını oluşturduk.
+11) CategoryController içerisinde Add actionının get ve postunu yazdık ve viewını oluşturduk.
+
+***Tools sekmesindeki Create Guid seçeneği ile yeni Guid ler oluşturabiliyoruz.
+
+12) CategoryController içerisinde Delete actionının get ini yazdık.
+13) TemData mesajları gözükmediği için Startup class ı içerisindeki app.UseCookiePolicy(); metodunu en aşağıya taşıdık.
+14) CategoryController içerisinde Edit actionının get ve postunu yazdık ve viewını oluşturduk.
+
+***Entity Framework Change Tracker özelliği: Find veya FirstOrDefault ile bulduğumuz nesnenin hani propertylerini değiştirdiysek ona göre update sorgusu atar. Entry metodunu kullanırsak o bütün propertyleri sorguda gönderir ve update eder.
+
+15) Controller klasoru içerisine with views, using EntityFramewor seçerek bir ProductController ekledik. Oradan hazır olarak Actionlar ve Viewler geldi.
+16) Startup classı içerisine services.Configure() den sonra  services.AddDbContext<MyContext>(); ekledik.
+
+*** readonly nesnelerin özelliği: Bir kere yazılırlar, değiştirilemezler fakat constructordan bir kere değiştirme hakkımız vardır.
+*** .NetCore un kenidisi içerisinde Dependency Injection ı bulunmakta.

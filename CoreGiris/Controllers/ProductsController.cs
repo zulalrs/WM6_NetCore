@@ -13,9 +13,10 @@ namespace CoreGiris.Controllers
     {
         private readonly MyContext _context;
 
+        // Dependecy Injetion
         public ProductsController(MyContext context)
         {
-            _context = context;
+            _context = context; // Burada MyContext sınıfının bir tane instance sını sağlıyor.
         }
 
         // GET: Products
