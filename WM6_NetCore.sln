@@ -8,8 +8,11 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreGiris", "CoreGiris\CoreGiris.csproj", "{5B5AD9F8-3BD4-4468-BC80-4D7F692F4973}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ders2", "Ders2", "{5319F9BC-8D1F-43F2-BDDE-D7B053E0CDCD}"
+	ProjectSection(SolutionItems) = preProject
+		CoreIdentityNotlar.txt = CoreIdentityNotlar.txt
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreIdentity", "CoreIdentity\CoreIdentity.csproj", "{48CD8E77-7361-486C-A22D-8180504F0E44}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreIdentity", "CoreIdentity\CoreIdentity.csproj", "{48CD8E77-7361-486C-A22D-8180504F0E44}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

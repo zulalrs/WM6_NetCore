@@ -1,0 +1,17 @@
+1) NewProject + ASP.Net Core Application + Web Application(Model-View-Controller) +  Change Authentication(Individual User) iþlemleri ile yeni bir core projesi oluþturduk.
+2) appsettings dosyasý içerisinde yer alan  connectionstring ifadesinde databaseimizin adýný deðiþtirdik.
+3) Models klasoru içerisine IdentityModels klasoru açtýk ve içerisine ApplicationUser(Mvc deki User sýnýfý) ve ApplicationRole(Mvc deki Role sýnýfý) sýnýflarýný ekleyip propertylerini yazdýk.
+4) services.AddDefaultIdentity kýsmýnda deðiþiklikler yaptýk. IdentityUser alanýna ApplicationUser yazdýk. ApplicationRole eklemesini de yaptýk.
+5) Data klasoru içerisindeki ApplicationDbContext sýnýfý içerisinde kalýtým kýsmýnda deðiþiklik yaptýk.
+6) Projeyi startup olarak sectik, add-migration ve update database yaparak veri tabanýný oluþturduk.
+7) Startup sýnýfý içerisine KullanýcýAdý, Þifre, Yanlýþ Giriþ ve Cookie ayarlarýný servis olarak ekledik.
+8) Models klasoru içerisine viewmodels klasoru açtýk.Ýçine de RegisterViewModel ve LoginViewModel sýnýflarýný ekledik. Propertyleri yazdýk.
+9) Controller klasoru içerisine AccountController ekledik. Index actionýný sildik.
+10) AccountController içerisine Ragister get ve post Actionlarýn yazdýk, Viewýný oluþturduk.
+11) AccountController içerisinde Dependecy Injection iþlemlerini gerçekleþtirdik.
+
+** Bir nesneyi dependency injection þeklinde yazabilmemiz için Startup sýnýfý içerisinde servise olarak eklememiz lazým.
+
+12) LoginPartial View i içerisinde deðiþiklikler yaptýk.
+13) AccountController içerisine Login get ve post Actionlarýný yazdýk, Viewýný oluþturduk.
+14) AccountController içerisine Logout actionýný yazdýk.

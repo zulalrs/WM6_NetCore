@@ -31,41 +31,43 @@ namespace IdentityCore
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+// ApplicationDbContext burada servis olarak eklenmiş, eğer contextten bir instance almak istersek constructordan bunu inject etmemiz lazım. Yani dependency injection işlemi yapmamız lazım.
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    Configuration.GetConnectionString("DefaultConnection")));   // ConnectionString in adı yani mvc de yazdığımız add name:MyCon daki MyCon u temsil ediyor.Bu ismi değiştirebiliriz ama aynı zamanda appsetting içerisinden de değiştirmemiz lazım.
                      
 
-            services.AddDefaultIdentity<ApplicationUser>()
-                .AddRoles<ApplicationRole>()
+            services.AddDefaultIdentity<ApplicationUser>()  // Burada IdentityUser yazıyordu fakat biz onu biraz geliştirmek için bu sınıfı  yazdık ve IdentitUserdan kalıtım aldırdık.
+                .AddRoles<ApplicationRole>()    // Role yonetimi için de buraya servis olarak role sınıfını ekledik ve yine onu da IdentityRole dan kalıtım aldırdık.
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            // KullanıcıAdı, Şifre, Yanlış Giriş ve Cookie ayarları
             services.Configure<IdentityOptions>(options =>
             {
                 // Password settings.
-                options.Password.RequireDigit = true;
-                options.Password.RequireLowercase = false;
-                options.Password.RequireNonAlphanumeric = true;
-                options.Password.RequireUppercase = true;
-                options.Password.RequiredLength = 6;
+                options.Password.RequireDigit = true; // İçerisinde rakam olmalı mı
+                options.Password.RequireLowercase = false; // İçerisinde küçük harf olmalı mı
+                options.Password.RequireNonAlphanumeric = true; // Özel bir karakter olmalı mı &,-,_ gibi
+                options.Password.RequireUppercase = true;   // İçerisinde büyük harf olmalı mı
+                options.Password.RequiredLength = 6; // En az 6 karakter
                 options.Password.RequiredUniqueChars = 0;
 
                 // Lockout settings.
-                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
-                options.Lockout.MaxFailedAccessAttempts = 3;
-                options.Lockout.AllowedForNewUsers = false;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);  // Şifreyi aşağıda belirtilen sayıda yanlış girdikten sonra ne kadar süre ile sistemden uzaklaştırılacağını beliritiyor.
+                options.Lockout.MaxFailedAccessAttempts = 3; // Maksimum yanlış girme saysısı.
+                options.Lockout.AllowedForNewUsers = false; // Yanlış giren kişiye tekrar kullanıcı oluşturma izni verip vermeme ayarı
 
                 // User settings.
                 options.User.AllowedUserNameCharacters =
-                    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
-                options.User.RequireUniqueEmail = true;
+                    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";  // UserName için kullanılabilecek karakterler.
+                options.User.RequireUniqueEmail = true; // Kullanıcı emaillerinin unique olma ayarı
             });
 
             services.ConfigureApplicationCookie(options =>
             {
                 // Cookie settings
                 options.Cookie.HttpOnly = true;
-                options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(30); // Uygulamaya bağlandığımızdaki cookie süresi
 
                 options.LoginPath = "/Account/Login";
                 options.AccessDeniedPath = "/Identity/Account/AccessDenied";
@@ -93,7 +95,7 @@ namespace IdentityCore
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            app.UseAuthentication();
+            app.UseAuthentication();    // Authentication istiyorsak bu kodu core projelerimize eklemeliyiz.
 
             app.UseMvc(routes =>
             {
