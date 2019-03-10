@@ -10,7 +10,7 @@ namespace CoreIdentity.Models.IdentityModels
     public class ApplicationRole : IdentityRole
     {
         // Role tablosuna ekleme yapacak. IdentityRole yapısını burada geliştirmiş olduk.
-        [Required, StringLength(128)]
+        [StringLength(128)]
         public string Description { get; set; }
     }
 }

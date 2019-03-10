@@ -15,3 +15,5 @@
 12) LoginPartial View i içerisinde deðiþiklikler yaptýk.
 13) AccountController içerisine Login get ve post Actionlarýný yazdýk, Viewýný oluþturduk.
 14) AccountController içerisine Logout actionýný yazdýk.
+15) Models klasoru içerisine IdentiyRole adýnda bir enum oluþturduk.
+16) HomeController içindeki bazý actionlarýn üzerine Authorize ekledik.

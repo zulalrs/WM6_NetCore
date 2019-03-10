@@ -1,10 +1,12 @@
 ﻿using CoreIdentity.Data;
+using CoreIdentity.Models;
 using CoreIdentity.Models.IdentityModels;
 using CoreIdentity.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace IdentityCore.Controllers
@@ -32,11 +34,11 @@ namespace IdentityCore.Controllers
                 {
                     var role = new ApplicationRole()
                     {
-                        Name=roleName,
-                        Description=""
+                        Name = roleName,
+                        Description = ""
                     };
                     var task = _roleManager.CreateAsync(role).Result;
-                    Task.Run(()=> task);
+                    Task.Run(() => task);
                 }
             }
         }
@@ -67,6 +69,17 @@ namespace IdentityCore.Controllers
 
             if (result.Succeeded) // Eğer kayıt başarılı ise
             {
+                
+               if(_userManager.Users.Count() == 1) // Eger user sayısı 1 ise ilk kayıt yaptıran kullanıcıdır ve tektir.
+                {
+                   await _userManager.AddToRoleAsync(user, IdentityRoles.Admin.ToString()); // O kullanıcıya Admin rolunu ata.
+                }
+                else
+                {
+                    // Değilse 1 den fazla kullanıcı var demektir. Adminden sonraki tüm kullanıcıların User rolunde olmasını istediğimiz için de atama user olacak.
+                    await _userManager.AddToRoleAsync(user, IdentityRoles.User.ToString());
+                }
+
                 return RedirectToAction(nameof(Login)); // Giriş sayfasına yonlendirecek.
             }
             else // Değilse hata mesajı verecek.
@@ -108,12 +121,8 @@ namespace IdentityCore.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Home"); // Çıkış işleminden sonra Home controllerdaki Index sayfasına yonlendirecek.
         }
-    }
-    public enum IdentityRoles
-    {
-        Admin,
-        User
+        
     }
 }

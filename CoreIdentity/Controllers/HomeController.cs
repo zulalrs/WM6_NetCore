@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace CoreIdentity.Controllers
 {
+   
     public class HomeController : Controller
     {
         public IActionResult Index()
@@ -22,14 +23,14 @@ namespace CoreIdentity.Controllers
 
             return View();
         }
-       
+       [Authorize(Roles ="Admin")]
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
 
             return View();
         }
-
+        [Authorize(Roles = "Admin,User")]
         public IActionResult Privacy()
         {
             return View();

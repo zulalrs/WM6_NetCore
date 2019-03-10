@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using CoreIdentity.Models.IdentityModels
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -43,11 +47,28 @@
 
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2019 - CoreIdentity</p>
-        </footer>
-    </div>
+            <hr />
+            <footer>
+                <p>&copy; 2019 - CoreIdentity</p>
+                @if (await SignInManager.UserManager.GetUserAsync(User) != null)
+                {
+                    var user = await SignInManager.UserManager.GetUserAsync(User);
+
+                    @if (await UserManager.IsInRoleAsync(user,"Admin"))
+                    {
+                        <h2>Admin</h2>
+                    }
+                    else if (await UserManager.IsInRoleAsync(user, "User"))
+                    {
+                        <h2>User</h2>
+                    }
+                    else
+                    {
+                        <h2>Anonym</h2>
+                    }
+                }
+            </footer>
+        </div>
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
