@@ -7,10 +7,11 @@ using System.Text;
 namespace Kuzey.Models.Entities
 {
     [Table("Products")]
-    public class Product
+    public class Product : BaseEntity<string>
     {
-        [Required,StringLength(50)]
+        [Required, StringLength(50)]
         public string ProductName { get; set; }
+
         public decimal UnitPrice { get; set; }
         public int CategoryId { get; set; }
 
