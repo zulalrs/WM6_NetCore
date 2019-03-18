@@ -1,3 +1,4 @@
 Core projesi açtık
 .net standart library açtık
 referansları veridk
+transıt, singalton
