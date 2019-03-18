@@ -4,33 +4,31 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using CoreIdentity.Models;
-using Microsoft.AspNetCore.Authorization;
+using Kuzey.UI.Web.Models;
 
-namespace CoreIdentity.Controllers
+namespace Kuzey.UI.Web.Controllers
 {
-   
     public class HomeController : Controller
     {
         public IActionResult Index()
         {
             return View();
         }
-        [Authorize(Roles = "Admin,User")]
+
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
 
             return View();
         }
-       [Authorize(Roles ="Admin")]
+
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
 
             return View();
         }
-       
+
         public IActionResult Privacy()
         {
             return View();

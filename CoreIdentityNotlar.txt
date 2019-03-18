@@ -2,7 +2,7 @@
 2) appsettings dosyasý içerisinde yer alan  connectionstring ifadesinde databaseimizin adýný deðiþtirdik.
 3) Models klasoru içerisine IdentityModels klasoru açtýk ve içerisine ApplicationUser(Mvc deki User sýnýfý) ve ApplicationRole(Mvc deki Role sýnýfý) sýnýflarýný ekleyip propertylerini yazdýk.
 4) services.AddDefaultIdentity kýsmýnda deðiþiklikler yaptýk. IdentityUser alanýna ApplicationUser yazdýk. ApplicationRole eklemesini de yaptýk.
-5) Data klasoru içerisindeki ApplicationDbContext sýnýfý içerisinde kalýtým kýsmýnda deðiþiklik yaptýk.
+5) Data klasoru içerisindeki ApplicationDbContext sýnýfý içerisinde, kalýtým kýsmýnda deðiþiklik yaptýk.
 6) Projeyi startup olarak sectik, add-migration ve update database yaparak veri tabanýný oluþturduk.
 7) Startup sýnýfý içerisine KullanýcýAdý, Þifre, Yanlýþ Giriþ ve Cookie ayarlarýný servis olarak ekledik.
 8) Models klasoru içerisine viewmodels klasoru açtýk.Ýçine de RegisterViewModel ve LoginViewModel sýnýflarýný ekledik. Propertyleri yazdýk.
