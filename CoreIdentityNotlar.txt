@@ -17,3 +17,4 @@
 14) AccountController içerisine Logout actionýný yazdýk.
 15) Models klasoru içerisine IdentiyRole adýnda bir enum oluþturduk.
 16) HomeController içindeki bazý actionlarýn üzerine Authorize ekledik.
+17) Layout kýsmýnda giriþ yapan kullanýcýnýn rolune göre yazý gosteren bir kýsým yaptýk. Bunun için de startup içerisinde deðiþiklik yaptýk.

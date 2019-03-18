@@ -1,7 +1,7 @@
-﻿@using CoreIdentity.Models.IdentityModels
+﻿@*@using CoreIdentity.Models.IdentityModels
 @using Microsoft.AspNetCore.Identity
 @inject UserManager<ApplicationUser> UserManager
-@inject SignInManager<ApplicationUser> SignInManager
+@inject SignInManager<ApplicationUser> SignInManager*@
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,6 +68,7 @@
                     }
                 }*@
 
+                <!--Role e göre gösterim yapacak-->
                 @if (User.IsInRole("Admin"))
                 {
                     <h2>Admin</h2>

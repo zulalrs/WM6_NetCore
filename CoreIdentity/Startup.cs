@@ -36,9 +36,10 @@ namespace IdentityCore
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));   // ConnectionString in adı yani mvc de yazdığımız add name:MyCon daki MyCon u temsil ediyor.Bu ismi değiştirebiliriz ama aynı zamanda appsetting içerisinden de değiştirmemiz lazım.
                      
+            // Hem kullanıcı giriş çıkışlarını yönetebilmek hem de role ile ilgili işlem yapabilmek için bu şekilde yazmalıyız.
+            services.AddIdentity<ApplicationUser,ApplicationRole>()  // Burada IdentityUser yazıyordu fakat biz onu biraz geliştirmek için ApplicationUser sınıfını  yazdık ve IdentitUserdan kalıtım aldırdık. Authorize işlemleri içinde role yönetimine ihtiyaç duyduk bunun içinde AddDefaultIdentity yerine AddIdentity yazdık ve ApplicationRole ude ekledik. Bu sınıfta IdentityRole den kalıtım aldı.
 
-            services.AddIdentity<ApplicationUser,ApplicationRole>()  // Burada IdentityUser yazıyordu fakat biz onu biraz geliştirmek için bu sınıfı  yazdık ve IdentitUserdan kalıtım aldırdık.
-                .AddRoles<ApplicationRole>()    // Role yonetimi için de buraya servis olarak role sınıfını ekledik ve yine onu da IdentityRole dan kalıtım aldırdık.
+                //.AddRoles<ApplicationRole>()    // Role yonetimi için de buraya servis olarak role sınıfını ekledik ve yine onu da IdentityRole dan kalıtım aldırdık.
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             // KullanıcıAdı, Şifre, Yanlış Giriş ve Cookie ayarları
