@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace Kuzey.Models.Entities
 {
+    // Tüm Poco classlarımızda ortak olarak kullanılacakları bu class içerisinde yazdık.
     public abstract class BaseEntity<T>
     {
         [Key]

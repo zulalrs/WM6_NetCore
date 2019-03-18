@@ -1,4 +1,23 @@
-Core projesi açtýk
-.net standart library açtýk
-referanslarý veridk
-transýt, singalton
+	-N-Tier Design Repository-
+1) Asp.Net Core + Web Application(Model+View+Controller) + Change->Individual User Accounts (Kuzey.UI.Web) projesi açtýk
+2) Class Library (.Net Standart) -> (Kuzey.BLL, Kuzey.DAL, Kuzey.Models) oluþturduk.
+3) Dependencies kullanarak referanslarý verdik. 
+-Web-> Model ve BLL i görecek
+-Dal-> Modeli görecek
+-BLL-> Model ve DAL ý görecek.
+4) Manage Nuget solutiondn Microsoft.EntityFrameworkCore(2.1.1) i 4 Kuzey projemizede kurduk.
+5) Models içerisine Entities ve IdentityEntities klasorlerini ekledik.
+6) IdentityEntities klasoru içerisine ApplicationUser ve ApplicationRole sýnýflarýný ekledik, propertylerini yazdýk.
+7) Entities klasoru içerisine BaseEntity,Category ve Poduct sýnýflarýmýzý ekledik, propertylerini yazdýk.
+8) DAL içerisine MyContext sýnýfýný ekledik.
+9) Paket ile ilgili bir sýkýntý yaþarsak (Microsoft.AspNetCore.Identity.EntityFrameworkCore(2.1.1)) paketi silip tekrar yuklemeliyiz. Paket Dependencies içerisinde olmalý.
+10) Kendi context sýnýfýmýzý oluþturduðumuz için UI.Web deki Data klasorunu sildik.
+11) appsettings.json içerisinde yer alan connectionstring ifadesindeki database adýmýzý deðiþtirdik.
+12) Startup sýnýfý içerisinde deðiþiklikler yaptýk.
+13) MyContext sýnýfý içerisine DbSetlerimizi ekledik.
+14) Add-migration yaptýk.
+15) Mgrationdan sora paket eklememiz gerekirse (Microsoft.EntityFrameworkCore.SqlServer(2.1.1)) kurulumu yapýlmalý.
+16) Update database yaptýk.
+
+
+***transýt, singalton

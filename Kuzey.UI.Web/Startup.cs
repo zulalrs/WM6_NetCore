@@ -31,13 +31,14 @@ namespace Kuzey.UI.Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<MyContext>(options =>
+            // 1) 
+            services.AddDbContext<MyContext>(options => // Buradaki ApplicationDbContext yerine kendi oluşturduğumuz context sınıfının ismini verdik.
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddIdentity<ApplicationUser, ApplicationRole>()
-                .AddEntityFrameworkStores<MyContext>();
+            services.AddIdentity<ApplicationUser, ApplicationRole>() // Bu kısımda da user ve role işlemlerini yapabilmek için değişiklikler yaptık.
+                .AddEntityFrameworkStores<MyContext>(); // ApplicationDbContext yerine kendi oluşturduğumuz context sınıfının ismini verdik.
 
-
+            // 2) Ayarlar
             services.Configure<IdentityOptions>(options =>
             {
                 // Password settings.
@@ -59,6 +60,7 @@ namespace Kuzey.UI.Web
                 options.User.RequireUniqueEmail = true;
             });
 
+            // 3) Cookie ayarları
             services.ConfigureApplicationCookie(options =>
             {
                 // Cookie settings
@@ -100,6 +102,7 @@ namespace Kuzey.UI.Web
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
+            // 4) Yukarıdan aşağıya taşıdık.
             app.UseCookiePolicy();
         }
     }
