@@ -1,4 +1,7 @@
-﻿using Kuzey.DAL;
+﻿using Kuzey.BLL.Repository;
+using Kuzey.BLL.Repository.Abstracts;
+using Kuzey.DAL;
+using Kuzey.Models.Entities;
 using Kuzey.Models.IdentityEntities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -72,6 +75,10 @@ namespace Kuzey.UI.Web
                 options.SlidingExpiration = true;
             });
 
+            // 5) Repoları servis olarak ekledik.
+            services.AddScoped<IRepository<Category, int>, CategoryRepo>();   // Birinci yazdığımız interface olacak ikinciside nesnesi olacak
+            services.AddScoped<IRepository<Product, string>, ProductRepo>();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -91,7 +98,7 @@ namespace Kuzey.UI.Web
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            
+
 
             app.UseAuthentication();
 

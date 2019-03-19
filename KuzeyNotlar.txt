@@ -16,8 +16,16 @@
 12) Startup sýnýfý içerisinde deðiþiklikler yaptýk.
 13) MyContext sýnýfý içerisine DbSetlerimizi ekledik.
 14) Add-migration yaptýk.
-15) Mgrationdan sora paket eklememiz gerekirse (Microsoft.EntityFrameworkCore.SqlServer(2.1.1)) kurulumu yapýlmalý.
+15) Migrationdan sora paket eklememiz gerekirse (Microsoft.EntityFrameworkCore.SqlServer(2.1.1)) kurulumu yapýlmalý.
 16) Update database yaptýk.
+17) BLL projesine Repository klasoru açtýk ve içerisine de IRepository adýnda bir interface ve RepositoryBase adýnda bir class oluþturduk.
+18) Repository klasoru içerisine CategoryRepo ve ProductRepo sýnýflarýný ekledik.
+19) Startup classý içerisine repo(Category, Product) classlarýmýzý servis olarak ekledik.
+20) HomeController içerisinde ve ýndex viewý içerisinde deðiþiklikler yaptýk.
+21) MyContext içerisideki IdentityDbContext i generic hale getirdik.
+22) LoginPartial view içerisinde IdentityUser yazan yerlere ApplicationUser yazdýk.
+
+
 
 
 ***transýt, singalton
