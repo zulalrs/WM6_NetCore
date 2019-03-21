@@ -1,4 +1,5 @@
-﻿using Kuzey.BLL.Repository;
+﻿using Kuzey.BLL.Account;
+using Kuzey.BLL.Repository;
 using Kuzey.BLL.Repository.Abstracts;
 using Kuzey.DAL;
 using Kuzey.Models.Entities;
@@ -38,8 +39,13 @@ namespace Kuzey.UI.Web
             services.AddDbContext<MyContext>(options => // Buradaki ApplicationDbContext yerine kendi oluşturduğumuz context sınıfının ismini verdik.
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddIdentity<ApplicationUser, ApplicationRole>() // Bu kısımda da user ve role işlemlerini yapabilmek için değişiklikler yaptık.
-                .AddEntityFrameworkStores<MyContext>(); // ApplicationDbContext yerine kendi oluşturduğumuz context sınıfının ismini verdik.
+            //services.AddIdentity<ApplicationUser, ApplicationRole>() // Bu kısımda da user ve role işlemlerini yapabilmek için değişiklikler yaptık.
+            //    .AddEntityFrameworkStores<MyContext>(); // ApplicationDbContext yerine kendi oluşturduğumuz context sınıfının ismini verdik.
+
+            // 6) CreatedUserId atama işlemlerinde Register olabilmek için burada değişiklik yaptık.
+            services.AddDefaultIdentity<ApplicationUser>()
+                .AddRoles<ApplicationRole>()
+               .AddEntityFrameworkStores<MyContext>();
 
             // 2) Ayarlar
             services.Configure<IdentityOptions>(options =>
@@ -78,6 +84,7 @@ namespace Kuzey.UI.Web
             // 5) Repoları servis olarak ekledik.
             services.AddScoped<IRepository<Category, int>, CategoryRepo>();   // Birinci yazdığımız interface olacak ikinciside nesnesi olacak
             services.AddScoped<IRepository<Product, string>, ProductRepo>();
+            services.AddScoped<MembershipTools, MembershipTools>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

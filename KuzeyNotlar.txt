@@ -21,11 +21,25 @@
 17) BLL projesine Repository klasoru açtýk ve içerisine de IRepository adýnda bir interface ve RepositoryBase adýnda bir class oluþturduk.
 18) Repository klasoru içerisine CategoryRepo ve ProductRepo sýnýflarýný ekledik.
 19) Startup classý içerisine repo(Category, Product) classlarýmýzý servis olarak ekledik.
-20) HomeController içerisinde ve ýndex viewý içerisinde deðiþiklikler yaptýk.
-21) MyContext içerisideki IdentityDbContext i generic hale getirdik.
-22) LoginPartial view içerisinde IdentityUser yazan yerlere ApplicationUser yazdýk.
+20) MyContext içerisideki IdentityDbContext i generic hale getirdik.
+21) LoginPartial view içerisinde IdentityUser yazan yerlere ApplicationUser yazdýk.
+22) HomeController içerisinde ve ýndex viewý içerisinde deðiþiklikler yaptýk.
+23) *Incluede ile ilgili sýkýntý için birkaç deðiþiklik yaptýk hepsi yorum satýrý þeklinde.
+	Deðiþiklik yaptýðýmýz sýnýflar: IRepository,RepositoryBase, HomeControl
+24) BLL içerisine Account klasoru oluþturduk. Onun içerisinede MembershipTools sýnýfý açtýk.
+25) Startup sýnýfý içerisine MembershipTools sýnýfýný service olarak ekledik.
+26) Home controller içerisine MembershipTools ile alakalý eklemeler yaptýk.
+27) BaseEntity classý içerisinde AuditEtity adýnda bir class daha ekledik.Bu class içerisine iki property daha ekledik ve add-migration, update-database yaptýk.
+28) MyCotext içerisine, giriþ yapan kullanýcýnýn Id sini yakalamak için kodlar yaztýk.O id yi Baseentity içerisinde yer alan CreatedUserId propertysine atayacaðýz.
+29) HomeController içerisine product için update kodlarý yazdýk.
 
+*** Dependency injection ile repolarýmýzý service olarak ekledik ve o repolarýmýzý inject ettiðimiz sayfalarda instance ile uðraþmadan yukarýya readonly olarak tanýmladýk.Ve sayfa içerisinde istediðimiz yerde istediðimiz kadar kullanabildik.
+***Readonly nesneler constructor ile sadece bir kere deðiþtirilir.
+*** Navigation propertyi kullanarak bir where yazacaksak onu incluede dan sonra . diyerek yazmalýyýz.
 
+*** Transient, Scoped, Singleton nedir?
+– Transient: Nesneye yapýlan her çaðrýda yeni bir nesne oluþturulur. Stateless nesneye ihtiyaç duyulan durumlarda kullanýlýr. AddTransient() metodu aracýlýðýyla Transient tipinde baðýmlýlýklar oluþturabiliriz.
 
+– Scoped: Yapýlan her request’te nesne tekrar oluþur ve bir request içerisinde sadece bir tane nesne kullanýlýr. Bu yöntem için de AddScoped() metodu kullanýlýyor. Transient ve Scoped kullaným þekilleri nesne oluþturma zamanlarý açýsýndan biraz karýþtýrýlabilir. Transient’da her nesne çaðrýmýnda yeni bir instance oluþturulurken, Scoped’da ise request esnasýnda yeni bir instance oluþur ve o request sonlanana kadar ayný nesne kullanýlýr. Request bazýnda stateless nesne kullanýlmasý istenen durumlarda Scoped baðýmlýlýklarý oluþturabiliriz.
 
-***transýt, singalton
+– Singleton: ASP.NET Core uygulamasý baþlatýldýðýnda register edilen nesneye ait sadece bir tane instance oluþur ve uygulamadaki her yerden bu referans çaðrýlýr. Uygulama yeniden baþlatýlana kadar bu nesne referansý kullanýlýr, farklý bir nesne referansý ikinci kez oluþturulmaz. Bu yöntem için de AddSingleton() metodunu kullanýyoruz.

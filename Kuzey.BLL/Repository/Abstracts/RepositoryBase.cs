@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Kuzey.BLL.Repository.Abstracts
 {
-    public abstract class RepositoryBase<T,TId>:IRepository<T,TId> where T:BaseEntity<TId> // Bu class IRepositoryden kalıtım alacak ve onun içindeki metodlar implement edilmek zorunda.
+    public abstract class RepositoryBase<T, TId> : IRepository<T, TId> where T : BaseEntity<TId> // Bu class IRepositoryden kalıtım alacak ve onun içindeki metodlar implement edilmek zorunda.
     {
         private readonly MyContext DbContext;
         private readonly DbSet<T> DbObject;
@@ -19,48 +19,32 @@ namespace Kuzey.BLL.Repository.Abstracts
         }
 
         // Temel CRUD işlemlerinin metodlarını implement ettikten sonra içlerini burada doldurduk.
-        public List<T> GetAll()
-        {
-            return DbObject.ToList();
-        }
 
-        public List<T> GetAll(Func<T, bool> predicate)
-        {
-            return DbObject.Where(predicate).ToList();
-        }
 
-        public List<T> GetAll(params string[] includes)
+        public IQueryable<T> GetAll()
         {
-            foreach (var inc in includes)
-            {
-                DbObject.Include(inc);
-            }
-            return DbObject.ToList();
+            return DbObject;
         }
-
-        public List<T> GetAll(Func<T, bool> predicate, params string[] includes)
+        public IQueryable<T> GetAll(Func<T, bool> predicate)
         {
-            foreach (var inc in includes)
-            {
-                DbObject.Include(inc);
-            }
-            return DbObject.Where(predicate).ToList();
+            return DbObject.Where(predicate).AsQueryable();
         }
-
         public T GetById(T Id)
         {
             return DbObject.Find(Id);
         }
 
-        public int Insert(T entity)
+        public void Insert(T entity)
         {
             DbObject.Add(entity);
-            return DbContext.SaveChanges();
+            //DbContext.SaveChanges
+            this.Save();
         }
         public void Delete(T entity)
         {
             DbObject.Remove(entity);
-            DbContext.SaveChanges();
+            //DbContext.SaveChanges();
+            this.Save();
         }
         public void Update(T entity)
         {
@@ -73,11 +57,36 @@ namespace Kuzey.BLL.Repository.Abstracts
             DbContext.SaveChanges();
         }
 
+        // Incluede ile ilgili yapılan değişiklikler
+        /*
+        public List<T> GetAll()
+        {
+            return DbObject.ToList();
+        }
+        public List<T> GetAll(Func<T, bool> predicate)
+        {
+            return DbObject.Where(predicate).ToList();
+        }
+        public List<T> GetAll(params string[] includes)
+        {
+            foreach (var inc in includes)
+            {
+                DbObject.Include(inc);
+            }
+            return DbObject.ToList();
+        }
+        public List<T> GetAll(Func<T, bool> predicate, params string[] includes)
+        {
+            foreach (var inc in includes)
+            {
+                DbObject.Include(inc);
+            }
+            return DbObject.Where(predicate).ToList();
+        }
         public IQueryable<T> Queryable()
         {
             return DbObject.AsQueryable();
         }
-
         public IQueryable<T> Queryable(params string[] includes)
         {
             foreach (var inc in includes)
@@ -86,5 +95,6 @@ namespace Kuzey.BLL.Repository.Abstracts
             }
             return DbObject.AsQueryable();
         }
+        */
     }
 }

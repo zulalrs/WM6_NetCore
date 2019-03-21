@@ -8,9 +8,9 @@ namespace Kuzey.Models.IdentityEntities
     {
         // User tablosuna ekleme yapacak. IdentityUser yapısını burada geliştirmiş olduk.
         [Required, StringLength(50)]
-        public string Name { get; set; }
+        public string Name { get; set; } = "Test1"; // Null hatası almamak için bu string ifadeyi yazdık.
         [Required, StringLength(50)]
-        public string Surname { get; set; }
+        public string Surname { get; set; }="Test2";
         public DateTime RegisterDate { get; set; } = DateTime.Now;
     }
 }

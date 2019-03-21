@@ -7,21 +7,26 @@ using Microsoft.AspNetCore.Mvc;
 using Kuzey.UI.Web.Models;
 using Kuzey.BLL.Repository.Abstracts;
 using Kuzey.Models.Entities;
+using Microsoft.EntityFrameworkCore;
+using Kuzey.BLL.Account;
 
 namespace Kuzey.UI.Web.Controllers
 {
     public class HomeController : Controller
     {
-        // DependencyInjection işlmeleri
+        // DependencyInjection işlemleri
         private readonly IRepository<Category, int> _categoryRepo;
         private readonly IRepository<Product, string> _productRepo;
-        public HomeController(IRepository<Category,int> categRepo,IRepository<Product, string> productRepo)
+        private readonly MembershipTools _membershipTools;
+        public HomeController(IRepository<Category,int> categRepo,IRepository<Product, string> productRepo, MembershipTools membershipTools)
         {
             _categoryRepo = categRepo;
             _productRepo = productRepo;
+            _membershipTools = membershipTools;
         }
         public IActionResult Index()
         {
+            // Category ve product ı buradan ekledik.
             if(!_categoryRepo.GetAll().Any())
             {
                 _categoryRepo.Insert(new Category() {
@@ -32,9 +37,9 @@ namespace Kuzey.UI.Web.Controllers
                     CategoryName = "Condiments"
                 });
             }
-            if (!_productRepo.Queryable().Any())
+            if (!_productRepo.GetAll().Any())   // // Incluede değişikliği Queryable iken GetAll olarak değiştirdik
             {
-                var catId = _categoryRepo.Queryable().FirstOrDefault().Id;
+                var catId = _categoryRepo.GetAll().FirstOrDefault().Id; // Incluede değişikliği Queryable iken GetAll olarak değiştirdik
                 _productRepo.Insert(new Product()
                 {
                     CategoryId=catId,
@@ -48,12 +53,23 @@ namespace Kuzey.UI.Web.Controllers
                     UnitPrice = 20
                 });
             }
-            var data = _productRepo.GetAll("Category");
+
+            //var data = _productRepo.GetAll("Category"); Incluede değişikliği
+            var data = _productRepo.GetAll().Include(x => x.Category).ToList(); // View kısmında categoryname i kullanacağımız için burada ıncluede işlemini gerçekleştirdik. Çünkü core da lazy loading yok.
+
+            foreach (var product in data)
+            {
+                product.UnitPrice *= 1.05m;
+                _productRepo.Update(product);
+            }
             return View(data);
         }
 
         public IActionResult About()
         {
+            // MembershipTools içerisindeki nesneleri burada çağırdık.
+            var userManager = _membershipTools.UserManager;
+            var signInManager = _membershipTools.SignInManager;
             ViewData["Message"] = "Your application description page.";
 
             return View();
